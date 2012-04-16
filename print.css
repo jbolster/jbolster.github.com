@@ -1,0 +1,19 @@
+html, body, div.hresume {
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+a {
+    text-decoration: none;
+}
+div.hresume .contact .url-link {
+    display: inline;
+    float: none;
+}
+div.vevent {
+    float: none;
+    width: 95%;
+    margin-bottom: 1em;
+}
+

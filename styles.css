@@ -1,0 +1,108 @@
+body {
+    font-family: arial;
+    font-size: .73em;
+    background-color: #444;
+    text-align: center;
+}
+img {
+    border: 0;
+}
+hr {
+    background: none;
+    border: 0;
+    clear: both;
+    display: block;
+    float: none;
+    font-size: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+p {
+    margin-top: 1em;
+}
+h3 {
+    font-size: 1.1em;
+    margin-top: 0;
+}
+div.hresume {
+    width: 735px;
+    margin: 0 auto;
+    border: solid #ccc 1px;
+    padding: 1em 2em;
+    background-color: #fff;
+    text-align: left;
+}
+div.hresume h2 {
+    border-bottom: dashed 2px #ccc;
+    padding-bottom: 5px;
+    font-variant: small-caps;
+    font-weight: normal;
+    font-size: 1.5em;
+    margin: 0 0 10px 0;
+}
+div.hresume a {
+    color: #333;
+}
+div.hresume .contact h2 {
+    font-size: 2em;
+}
+div.hresume .contact .photo {
+    float: right;
+    margin: 1em;
+}
+div.hresume .contact ul {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+div.hresume .contact .url-link {
+    display: none;
+}
+div#summary p {
+    padding: 0 1.5em;
+    text-align: justify;
+}
+div.vcalendar {
+    clear: both;
+}
+div.vcalendar div {
+    text-align: justify;
+}
+div.vevent {
+    float: left;
+    width: 30em;
+    padding-left: 1.25em;
+}
+div.vevent a.org {
+    color: #000;
+}
+div.education .award {
+    display: block;
+    font-style: italic;
+}
+div.hresume table {
+    width: 95%;
+    border: solid #ccc 1px;
+    margin: 1em auto;
+    padding: .25em;
+    font-size: 1em;
+}
+div.hresume thead {
+    font-style: bold;
+}
+.firstcol {
+    text-align: left;
+}
+.middlecol {
+    text-align: left;
+}
+.lastcol {
+    text-align: center;
+}
+div.hresume h3 a {
+    color: #000;
+}
+
