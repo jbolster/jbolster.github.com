@@ -1,5 +1,3 @@
-@font-face {font-family: 'Museo-100';src: url('webfonts/252FD4_0_0.eot');src: url('webfonts/252FD4_0_0.eot?#iefix') format('embedded-opentype'),url('webfonts/252FD4_0_0.woff') format('woff'),url('webfonts/252FD4_0_0.ttf') format('truetype');} 
-
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
 
@@ -58,7 +56,7 @@ h3 time.dateend{
 }
 
 h1, h2, h3, nav, .pagehead{
-    font-family: 'Museo-100', Arial, 'Helvetica Neue', Helvetica, sans-serif; 
+    font-family:"Museo Sans 100", Arial, 'Helvetica Neue', Helvetica, sans-serif; 
     font-weight:100; 
     font-style:normal;
 }
@@ -180,17 +178,17 @@ ul.social li a:hover{
 
 ul.skills{
     margin: 0;
-    padding: 0;
+padding: 0;
 }
 
 ul.skills li{
     display: inline-block;
-    background-color: #20A1C0;
-    color: #eee;
-    margin: 1px;
-    padding: 3px;
-    border-radius: 7px;
-    font-size: 0.85em;
+background-color: #20A1C0;
+color: #eee;
+margin: 1px;
+padding: 3px;
+border-radius: 7px;
+font-size: 0.85em;
 }
 
 
@@ -202,5 +200,5 @@ footer{
     padding-left: 40px;
     padding-right: 40px;
     background-color: #0D5FA8;
-    color: #eee;
+        color: #eee;
 }
