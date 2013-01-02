@@ -1,17 +1,21 @@
 CACHE MANIFEST
 
-#version 3
+#version 1-1-13-8
 
-index.html
+# Styles
 styles.css
-bg_op.jpg
+
+# Fonts
 webfonts/252FD4_0_0.eot
 webfonts/252FD4_0_0.woff
 webfonts/252FD4_0_0.ttf
-twitter.svg
-F_icon.svg
-github.svg
-wordle.png
+
+# Images
+images/bg.jpg
+images/twitter.svg
+images/facebook.svg
+images/github.svg
+images/wordle.png
 
 NETWORK:
 #*

@@ -18,19 +18,19 @@ body{
     font-weight: normal;
     line-height: 22px;
     text-align: justify;
-    background: url(bg_op.jpg);
+    background: url(images/bg.jpg);
 }
 
 #twitter{
-    background-image: url(twitter.svg);
+    background-image: url(images/twitter.svg);
 }
 
 #facebook{
-    background-image: url(F_icon.svg);
+    background-image: url(images/facebook.svg);
 }
 
 #github{
-    background-image: url(github.svg);
+    background-image: url(images/github.svg);
 }
 
 .clear{
