@@ -1,0 +1,31 @@
+# This is the default format. 
+# For more see: https://github.com/mojombo/jekyll/wiki/Permalinks
+permalink: /:categories/:year/:month/:title 
+
+exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md", "404.html"]
+include: ["_pages"]
+auto: false
+pygments: true
+
+markdown: redcarpet
+redcarpet:
+  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript", "with_toc_data"]
+
+# Themes are encouraged to use these universal variables 
+# so be sure to set them if your theme uses them.
+#
+title : Jonathon Bolster
+tagline: web developer, programmer, geek
+author :
+  name : Jonathon Bolster
+  email : jonathon@bolsterweb.com
+  github : jbolster
+  twitter : jbolster
+  facebook: bolster
+  gplus: 115124500511465538690
+  stackexchange : 4b41b43950c54ca1b724248392596be9
+
+url : http://jonathonbolster.co.uk
+
+disqus:
+  shortname: jonathonbolster

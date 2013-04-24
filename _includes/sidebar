@@ -1,0 +1,16 @@
+<div class="sidebar">
+    <div class="widget">
+        <h2>Recent posts</h2>
+		<ul>
+            {% for node in site.posts limit:5 %} 
+	            <li><a href="{{ node.url }}" title="{{ node.title }}">{{ node.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="widget">
+        <h2>Other bits</h2>
+        <ul>
+            <li><a title="Post archive" href="/archive.html">Post archive</a></li>
+        </ul>
+    </div>
+</div>

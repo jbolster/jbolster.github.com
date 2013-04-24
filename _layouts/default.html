@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    {% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
+    <meta name="author" content="{{ site.author.name }}">
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="/css/github.css" />
+    <link rel="alternate" type="application/rss+xml" title="{{ site.author.name }}'s RSS Feed" href="/atom.xml" />
+  </head>
+  <body>
+    <header class="pagehead">
+      <nav>
+        <ul>
+          <li><a href="/cv.html" title="My CV">CV</a></li>
+          <li class="{% if page.menu == nill %}active{% endif %}">
+            <a href="/" title="{{ site.author.name }}'s blog">Blog</a>
+          </li>
+          <li class="{% if page.menu == "about" %}active{% endif %}">
+            <a href="/about.html" title="About {{ site.author.name }}">About me</a>
+          </li>
+          <li><a href="/contact.html" title="Contact me">Contact me</a></li>
+        </ul>
+        <ul class="social">
+         <li><a href="http://twitter.com/{{ site.author.twitter }}/" id="twitter">Twitter</a></li>
+         <li><a href="http://facebook.com/{{ site.author.facebook }}/" id="facebook">Facebook</a></li>
+         <li><a href="http://github.com/{{ site.author.github }}/" id="github">Github</a></li>
+        </ul>
+      </nav>
+      <div class="info">
+        <h1>{{ site.title }}</h1>
+        <span>{{ site.tagline }}</span>
+      </div>
+    </header>
+    <div class="wrapper">
+      <section class="left">
+         {{ content }}
+      </section>
+      <section class="right">
+        {% include sidebar %} 
+      </section>
+    </div>
+
+    <footer>
+        <p>&copy; {{ site.author.name }} {{ site.time | date:"%Y" }} <span class="lastbuild">Last build: {{ site.time | date:"%H:%M %Y.%m.%d" }}</span></p>
+    </footer>
+    
+    <script src="/thirdparty/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-8527317-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+  </body>
+</html>
