@@ -11,11 +11,15 @@ published: true
 ---
 JavaScript's Date object provides a function for getting the milliseconds from the UNIX epoch - `getTime()`:
 
+```javascript
     var timeStamp = new Date().getTime();
+```
 
 However, there is a handy shortcut that gets the same thing:
 
+```javascript
     var timeStamp = +new Date();
+```
 
 It makes me wonder if the `+new` shortcut can work for any other JavaScript object but I haven't had a chance to look yet.
 

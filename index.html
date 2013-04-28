@@ -1,90 +1,17 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Hello</title>
-		<link rel="stylesheet" type="text/css" href="normalize.css" />
-		<link rel="stylesheet" type="text/css" href="styles.css" />
-	</head>
-	<body>
-		<header class="pagehead">
-			<nav>
-				<ul>
-					<li><a href="/cv" title="My CV">CV</a></li>
-					<li><a href="/blog" title="My blog">Blog</a></li>
-					<li><a href="/about" title="About me">About me</a></li>
-					<li><a href="/contact" title="Contact me">Contact me</a></li>
-				</ul>
-			</nav>
-			<div class="info">
-				<h1>Jonathon Bolster</h1>
-				<span>Web developer, programmer, geek</span>
-			</div>
-			<ul class="social">
-				<li><a href="http://twitter.com/jbolster/" id="twitter">Twitter</a></li>
-				<li><a href="http://facebook.com/bolster/" id="facebook">Facebook</a></li>
-				<li><a href="http://github.com/jbolster/" id="github">Github</a></li>
-			</ul>
-		</header>
-		<div class="wrapper">
-			<section class="left">
-				<article>
-					<header>
-						<h2>Education</h2>
-					</header>
-					<p class="subtitle">2005 - 2009 <a href="http://www.york.ac.uk" title="The University of York" class="org summary">The University of York, York</a></p>
-					<p>MEng - Computer Systems and Software Engineering</p>
-				</article>
-				<article>
-					<header>
-						<h2>Employment</h2>
-					</header>
-					<h3>July 2011 - Present</h3>
-					<p class="subtitle">Developer at GTI Recruiting Solutions</p>
-				</article>
-				<article>
-					<h3>January 2011 - April 2011</h3>
-					<p class="subtitle">Developer at Superbreak Mini Holidays</p>
-					<p>Working with Superbreak on a remote contract basis, I was brought in to work on implementing search for the company's website. This project made use of Lucene.NET to integrate a site search facility into the existing ASP MVC site.</p>
-					<p>Technical skills in this role: Lucene.NET, C# .NET 3.5 / 4.0, ASP .NET MVC, MSSQL, MSTest, Javascript, jQuery, HTML/CSS, SVN</p>
-				</article>
-				<article>
-					<h3>November 2010 - January 2011</h3>
-					<p class="subtitle">Web developer at University of Oxford</p>
-					<p>This web development role at the Bodleian Libraries focused mainly on providing support for the MySource Matrix CMS system that was in place. As well as this, management of the Google Analytics account was also required - including creation of filters for different groups within the libraries. One project I was asked to complete was the Book Moves Visualisation page. This was a page done mostly in JavaScript and jQuery, with CSS to create a directional graph.</p>
-					<p>Technical skills in this role: CMS management, Javascript, jQuery, HTML/CSS</p>
-				</article>
-				<article>
-					<h3>September 2009 - October 2010</h3>
-					<p class="subtitle">Developer at Superbreak Mini Holidays</p>
-					<p>The main responsibility of this role is to maintain the company's customer facing website. As well as general customers, the company provides a SOAP web service API to allow partners to search and book products. Shortly after joining, I began working on integrating the API with the site framework as well as providing support for the API customers. Another project I've worked on was to create a testing framework that allowed the non-development teams to create web usability tests and schedule blocks of testing for each new release. This used <a href="http://seleniumhq.org/" title="Selenium web application testing system">Selenium</a> to allow the site to be tested across various browsers and operating systems.</p>
-					<p>Technical skills in this role: C# .NET 3.5 / 4.0, ASP .NET MVC, SOAP Web Services, MSTest, MSSQL, Oracle, Javascript, jQuery, HTML/CSS, Selenium, SVN</p>
-				</article>
-				<article>
-					<h3>July 2005 - September 2008</h3>
-					<p class="subtitle">Trainee Software Engineer at Singularity</p>
-					<p>Worked as a developer for a company specialising in Business Process Management. Initially tasked to create a prototype UI to bring the software up to date which included researching and implementing third party components including handwriting and gesture recognition. Subsequent years saw me implementing the prototype into the main software package.</p>
-					<p>Technical skills in this role: C# .NET 1.1 / 2.0, WinForms, ASP .NET WebForms, SOAP Web Services, Javascript, MSSQL, Visual SourceSafe</p>
-				</article>
-			</section>
-			<section class="right">
-				<article>
-					<header><h2>Stuff I can do</h2></header>
-					<img src="images/wordle.png" alt="Stuff i do"/>
-				</article>
-				<article>
-					<header><h2>Here's a cat</h2></header>
-					<img src="http://placekitten.com/440/200" alt="recent stuff"/>
-				</article>
-				<article>
-					<header><h2>Stuff about me</h2></header>
-					<p>lopment role at the Bodleian Libraries focused mainly on providing support for the MySource Matrix CMS system that was in place. As well as this, management of the Google Analytics account was also required - including creation of filters for different groups within the libraries. One project I was asked to complete was the Book Moves Visualisation</p>
-				</article>
-			</section>
-		</div>
-		<footer>
-			<section>
-				I'm a section in the footer. Hello me!
-			</section>
-		</footer>
-	</body>
-</html>
+---
+layout: default
+---
+{% for node in site.posts limit:5 %}
+    <div class="post">
+        <div class="post-header">
+          <h2 class="post-title"><a href="{{ node.url }}" title="{{ node.title }}">{{ node.title }}</a></h2>
+        </div>
+        <div class="post-info">
+            <span class="date">{{ node.date | date_to_long_string}}</span>
+        </div>
+        <div class="post-entry">
+            {{ node.content | markdownify }}
+        </div>
+    </div>
+
+{% endfor %}

@@ -6,7 +6,6 @@
 
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
-
 .wrapper,.pagehead{
     background-color: #ffffff;
 }
@@ -15,56 +14,51 @@ p{
     margin:0 0 1em 0;
 }
 
-
 body{
     padding: 0;
     margin: 0 auto;
-    max-width: 1200px;
     background: url(../images/bg.jpg);
-    font-size: 17px;
+    font-size: 15px;
     font-family: 'helvetica neue', verdana, sans-serif;
     font-weight: 200;
+    max-width: 1200px;
 }
 
 #twitter{ background-image: url(../images/twitter.svg); }
 #facebook{ background-image: url(../images/facebook.svg); }
 #github{ background-image: url(../images/github.svg); }
 
+.info{
+    margin:1em 0 0 1.5em;
+}
 .pagehead h1{
     font-size: 3em;
-    margin: 20px 0 0 30px;
+    padding:0;
+    margin:0;
 }
 
 .info span{
-    margin: 0;
-    margin-left:30px;
     text-transform: lowercase;
 }
 
-.wrapper h1{
+.wrapper h1, .wrapper h2{
     background-color: #20A1C0;
     color: #eee;
-    padding:10px 10px 10px 30px; 
+    padding:0.5em 0.5em 0.5em 1em; 
     font-size:1.5em;
     margin: 0;
     margin-bottom: 0.1em;
 }
 
-.wrapper h2{
-    margin: 0 0 10px 0;
-    padding: 0;   
-}
-
 .post-info{
-    padding-left:30px;
+    padding-left:1.5em;
     font-size:0.9em;
 }
 
 .page-content,
 .post-entry{
-    padding: 20px 30px 0 30px;
-    text-align: justify;
-    line-height: 22px;
+    padding: 1em 1.5em 0 1.5em;
+    line-height: 1.5em;
 }
  .page-header a,
  .page-header a:link,
@@ -101,8 +95,8 @@ nav{
     width: 100%;
     display: block;
     background: #ccc;
-    height:60px;
-    padding:20px 30px 20px 30px;
+    height:3.5em;
+    padding:1em 1.5em 1em 1.5em;
     background-color: #20A1C0;
     display: inline-block;
 }
@@ -116,8 +110,8 @@ nav ul{
 
 .pagehead li{
     display: inline-block;
-    margin-right:1em;
-    font-size:1.5em;
+    margin-right:0.75em;
+    font-size:1.3em;
 }
 
 nav ul li a{
@@ -137,23 +131,13 @@ nav ul li a:hover{
     padding-top:10px;
 }
 
-.wrapper .left{
-    width: 900px;
-    float: left;
-}
-
 .wrapper .right{
-    width: 260px;
-    float: left;
     border-left: 1px solid #eee;
     margin:0;
-    padding: 0 0 0 10px;
-    line-height: 22px;
-
 }
 
 .wrapper .right ul{
-    padding:0 0 0 30px;
+    padding:0 0 0 1.5em;
     list-style-type: square;
 }
 .wrapper .right ul li{
@@ -161,30 +145,7 @@ nav ul li a:hover{
 }
 
 ul.social {
-    float: right;
-    margin-right:30px;
-}
-
-ul.social li{
-    margin-right: 0px;
-}
-
-ul.social li a{
-    display:inline-block;
-    width:60px;
-    height:60px;
-    background-color: #20A1C0;
-    border-radius: 50%;
-    text-indent: -9999px;
-
-    background-position: center center;
-    background-size: 75%;
-    background-repeat: no-repeat;
-}
-
-ul.skills{
-    margin: 0;
-    padding: 0;
+    display:none;
 }
 
 .sidebar{
@@ -192,16 +153,81 @@ ul.skills{
 }
 
 #disqus_thread{
-    padding:30px;
+    padding:1.5em;
 }
-
 
 footer{
     width: 100%;
     display: block;
     background: #ccc;
-    height:60px;
-    padding:30px;
+    height:3.5em;
+    padding:1.5em;
     background-color: #20A1C0;
-    display: inline-block;
+    color: #eee;
+}
+
+
+@media only screen and (min-width: 540px) {
+
+    .pagehead li{
+        margin-right:1em;
+    }
+
+    ul.social {
+        float: right;
+        margin-right:1.5em;
+        display:inline-block;
+    }
+
+    ul.social li{
+        margin-right: 0px;
+    }
+
+    ul.social li a{
+        display:none;
+    }
+
+    ul.social li a{
+        width:1.5em;
+        height:1.5em;
+        display:inline-block;
+        text-indent: -9999px;
+        background-color: #20A1C0;
+        border-radius: 50%;
+        background-position: center center;
+        background-size: 75%;
+        background-repeat: no-repeat;
+    }
+
+    body{
+        font-size:16px;
+    }
+}
+
+
+@media only screen and (min-width: 700px) {
+    ul.social li a{
+        width:3em;
+        height:3em;
+    }
+
+    .pagehead li{
+        margin-right:1.5em;
+    }
+
+}
+
+@media only screen and (min-width: 840px) {
+
+    .wrapper .left{
+        width: 77%;
+        float: left;
+    }
+
+    .wrapper .right{
+        width: 22%;
+        float: left;
+        border-left: 1px solid #eee;
+        padding: 0 0 0 1em;
+    }
 }

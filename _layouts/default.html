@@ -7,26 +7,24 @@
     <meta name="author" content="{{ site.author.name }}">
     <link rel="stylesheet" type="text/css" href="/css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="/css/styles.css" />
-    <link rel="stylesheet" type="text/css" href="/css/github.css" />
+    <link rel="stylesheet" type="text/css" href="/css/pygments.css" />
     <link rel="alternate" type="application/rss+xml" title="{{ site.author.name }}'s RSS Feed" href="/atom.xml" />
   </head>
   <body>
     <header class="pagehead">
       <nav>
         <ul>
-          <li><a href="/cv.html" title="My CV">CV</a></li>
           <li class="{% if page.menu == nill %}active{% endif %}">
             <a href="/" title="{{ site.author.name }}'s blog">Blog</a>
           </li>
           <li class="{% if page.menu == "about" %}active{% endif %}">
             <a href="/about.html" title="About {{ site.author.name }}">About me</a>
           </li>
-          <li><a href="/contact.html" title="Contact me">Contact me</a></li>
         </ul>
         <ul class="social">
-         <li><a href="http://twitter.com/{{ site.author.twitter }}/" id="twitter">Twitter</a></li>
-         <li><a href="http://facebook.com/{{ site.author.facebook }}/" id="facebook">Facebook</a></li>
-         <li><a href="http://github.com/{{ site.author.github }}/" id="github">Github</a></li>
+         <li><a href="http://twitter.com/{{ site.author.twitter }}/" id="twitter" title="{{ site.author.name }} on Twitter">Twitter</a></li>
+         <li><a href="http://facebook.com/{{ site.author.facebook }}/" id="facebook" title="{{ site.author.name }} on Facebook">Facebook</a></li>
+         <li><a href="http://github.com/{{ site.author.github }}/" id="github" title="{{ site.author.name }} on Github">Github</a></li>
         </ul>
       </nav>
       <div class="info">
@@ -44,7 +42,7 @@
     </div>
 
     <footer>
-        <p>&copy; {{ site.author.name }} {{ site.time | date:"%Y" }} <span class="lastbuild">Last build: {{ site.time | date:"%H:%M %Y.%m.%d" }}</span></p>
+        <p>This is my site. There are many like it but this one is mine.</span></p>
     </footer>
     
     <script src="/thirdparty/jquery-1.7.1.min.js"></script>

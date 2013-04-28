@@ -15,9 +15,11 @@ I was playing with [Remy Sharp's][1] [collaborative drawing][2] example after he
 
 Drew a couple of pictures and realised that I'm not as handy at drawing with the mouse as [I used to be][3] - so then I figured it would be better if I just put a random picture of a unicorn in. So I whacked open Developer Tools and tried to directly draw an image on the canvas element:
 
+```javascript
     var img = document.createElement("img");
     img.src = "http://somewhere-off-site.com/unicorn.jpg";
     ctx.drawImage(img,0,0);
+```
 
 Can you see the problem? Pub-quiz points if you correctly guessed 'Cross Domain Security'. It was perfectly fine to chuck the picture into the canvas without a problem cropping up. The issue happens when the code tried to call 'getDataURL' for transmission. That's the no no.
 
@@ -25,10 +27,11 @@ So what did I do? I cheated a little bit - browsing to the picture I wanted, get
 
 Voilá:
 
+```javascript
     var canvas = document.createElement("canvas");
     canvas.width = 50;
     canvas.height= 50;
-    
+
     // Random image from Google Image search for unicorn - don't judge me!
     var img = document.createElement("img");
     img.src = "http://media.avclub.com/images/articles/article/62/62295/GLE_302-Sc9_2191_jpg_627x325_crop_upscale_q85.jpg";
@@ -38,6 +41,7 @@ Voilá:
     
     var dataStr = canvas.toDataURL("image/png");
     window.location=dataStr;
+```
 
 The window URL changes to give me my data URL (which I've put as the src attribute for the image tag below:
 
@@ -45,12 +49,13 @@ The window URL changes to give me my data URL (which I've put as the src attribu
 
 Last thing to do is set the encoded data as the src rather than the external image URL in the code above:
 
+```javascript
     var img = document.createElement("img");
     img.src = "data:image/jpeg;base64,/9j/4AAQSkZJR....";
     ctx.drawImage(img,0,0);
+```
 
 No more security problems - but we did cheat! It's a far from perfect solution (and far from perfect coding) but it works for what I wanted to do. I wanted to manually put external image data on to a canvas element and do it manually.
-
 
 
 [1]: <http://twitter.com/rem> "Remy Sharp on Twitter"
