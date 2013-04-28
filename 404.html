@@ -6,7 +6,14 @@
     
     <meta name="author" content="Jonathon Bolster">
     <link rel="stylesheet" type="text/css" href="/css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="/css/styles-mobile.css" />
+
+    <!-- Media queried styles - needed for IE Mobile --> 
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen and (min-device-width: 480px)" /> 
+    <!--[if !IEMobile]> 
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen"  /> 
+    <![endif]-->
+
     <link rel="stylesheet" type="text/css" href="/css/pygments.css" />
     <link rel="alternate" type="application/rss+xml" title="Jonathon Bolster's RSS Feed" href="/atom.xml" />
   </head>
