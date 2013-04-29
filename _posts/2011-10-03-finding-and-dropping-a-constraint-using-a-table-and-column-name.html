@@ -13,6 +13,7 @@ I had a bit of a problem in work. I had to write some SQL to drop a uniqueness c
 
 So here's what I came up with and this did the job:
 
+```sql
     DECLARE @constraintName VARCHAR(50)
 
     select @constraintName = CONSTRAINT_NAME
@@ -21,6 +22,7 @@ So here's what I came up with and this did the job:
 
     IF  EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'[YOUR_TABLENAME]') AND name = @constraintName)
         EXEC('ALTER TABLE [YOUR_TABLENAME] DROP CONSTRAINT ' + @constraintName)
+```
 
 This worked for me since I know that the column will only have one constraint. Presumably the `CONSTRAINT_COLUMN_USAGE` will return multiple rows if there are multiple constraints. I also did the `EXEC` to get past the limitation that the `DROP CONSTRAINT` call doesn't accept a variable.
 

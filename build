@@ -1,4 +1,4 @@
-jekyll --no-auto
+jekyll --no-auto --pygments
 
 # copy the newly built 404.html
 cp _site/404.html .

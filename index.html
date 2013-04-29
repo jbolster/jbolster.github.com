@@ -4,7 +4,7 @@ layout: default
 {% for node in site.posts limit:5 %}
     <div class="post">
         <div class="post-header">
-          <h2><a href="{{ node.url }}" title="{{ node.title }}">{{ node.title }}</a></h2>
+          <h2 class="post-title"><a href="{{ node.url }}" title="{{ node.title }}">{{ node.title }}</a></h2>
         </div>
         <div class="post-info">
             <span class="date">{{ node.date | date_to_long_string}}</span>
@@ -12,17 +12,6 @@ layout: default
         <div class="post-entry">
             {{ node.content | markdownify }}
         </div>
-        <div class="post-meta">
-          {% unless node.tags == empty %}
-                {% for tag in node.tags %} 
-	                <span class="label label-info">{{ tag }}</span>
-                {% endfor %}
-            {% endunless %}  
-        </div>
     </div>
-
-    {% unless forloop.last %}
-    <hr>
-    {% endunless %}
 
 {% endfor %}

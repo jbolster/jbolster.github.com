@@ -1,0 +1,160 @@
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+.wrapper,.pagehead{
+    background-color: #ffffff;
+}
+
+p{
+    margin:0 0 1em 0;
+}
+
+body{
+    padding: 0;
+    margin: 0 auto;
+    font-size: 15px;
+    font-family: 'helvetica neue', verdana, sans-serif;
+    font-weight: 200;
+    max-width: 1200px;
+}
+
+#twitter{ background-image: url(../images/twitter.svg); }
+#facebook{ background-image: url(../images/facebook.svg); }
+#github{ background-image: url(../images/github.svg); }
+
+.info{
+    margin:1em 0 0 1.5em;
+}
+.pagehead h1{
+    font-size: 3em;
+    padding:0;
+    margin:0;
+}
+
+.info span{
+    text-transform: lowercase;
+}
+
+.wrapper h1, .wrapper h2{
+    background-color: #20A1C0;
+    color: #eee;
+    padding:0.5em 0.5em 0.5em 1em; 
+    font-size:1.5em;
+    margin: 0;
+    margin-bottom: 0.1em;
+}
+
+.post-info{
+    padding-left:1.5em;
+    font-size:0.9em;
+}
+
+.page-content,
+.post-entry{
+    padding: 1em 1.5em 0 1.5em;
+    line-height: 1.5em;
+}
+ .page-header a,
+ .page-header a:link,
+ .page-header a:visited,
+ .post-header a,
+ .post-header a:link,
+ .post-header a:visited
+ {
+    color: #eee !important;
+    text-decoration:none;
+ }
+
+ h1, h2, nav, .pagehead{
+     font-family: 'Museo-100', 'Helvetica Neue', Helvetica, sans-serif; 
+     font-weight:100; 
+     font-style:normal;
+ }
+
+ .wrapper a,
+ .wrapper a:link,
+ .wrapper a:visited
+ {
+    color: #000;
+ }
+
+
+
+.pagehead{
+    width: 100%;
+    float:left;
+}
+
+nav{
+    width: 100%;
+    display: block;
+    background: #ccc;
+    height:3.5em;
+    padding:1em 1.5em 1em 1.5em;
+    background-color: #20A1C0;
+    display: inline-block;
+}
+
+nav ul{
+    list-style-type: none;
+    padding:0;
+    margin: 0;
+    display: inline-block;
+}
+
+.pagehead li{
+    display: inline-block;
+    margin-right:0.75em;
+    font-size:1.3em;
+}
+
+nav ul li a{
+    display:inline-block;
+    text-decoration: none;
+    text-transform: lowercase;
+    color: #eee;
+}
+
+nav ul li a:hover{
+    text-decoration: underline;
+}
+
+.wrapper{
+    clear:both;
+    overflow: auto;
+    padding-top:10px;
+}
+
+.wrapper .right{
+    border-left: 1px solid #eee;
+    margin:0;
+}
+
+.wrapper .right ul{
+    padding:0 0 0 1.5em;
+    list-style-type: square;
+}
+.wrapper .right ul li{
+    padding-bottom:5px;
+}
+
+ul.social {
+    display:none;
+}
+
+.sidebar{
+    font-size:0.9em;
+}
+
+#disqus_thread{
+    padding:1.5em;
+}
+
+footer{
+    width: 100%;
+    display: block;
+    background: #ccc;
+    height:3.5em;
+    padding:1.5em;
+    background-color: #20A1C0;
+    color: #eee;
+}

@@ -20,6 +20,7 @@ What I do is create the iframe to get my clean window. Set up an object to copy 
 
 Here it is in glorious, unminified code:
 
+```javascript
     (function(window){
 	    var keys = {},
 	    cleanWindow,
@@ -41,6 +42,7 @@ Here it is in glorious, unminified code:
 	
 	    return keys;
     }(window))
+```
 
 This is written as [self executing JavaScript][2] and will return an object containing the objects that we worked out were added to the window.
 

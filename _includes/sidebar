@@ -1,22 +1,16 @@
 <div class="sidebar">
     <div class="widget">
-        <ul>
-            <li>
-                <a href="http://stackexchange.com/users/{{ site.author.stackexchange }}"><img src="http://stackexchange.com/users/flair/{{ site.author.stackexchange }}.png" width="208" height="58" alt="combined Stack Exchange profiles for {{ site.author.name }}" title="combined Stack Exchange profiles for {{ site.author.name }}">
-                </a>
-            </li>
-            <li><a title="{{ site.author.name }}'s Google+ page" href="https://plus.google.com/{{ site.author.gplus }}?rel=author">Google+</a></li>
-            <li><a title="{{ site.author.name }}'s Twitter stream" href="http://twitter.com/{{ site.author.twitter }}">Twitter</a></li>
-            <li><a title="{{ site.author.name }}'s Facebook page" href="http://facebook.com/{{ site.author.facebook }}">Facebook</a></li>
-            <li><a title="Post archive" href="/archive.html">Post archive</a></li>
-        </ul>
-    </div>
-    <div class="widget">
-        <h2>Recent Posts</h2>
+        <h2>Recent posts</h2>
 		<ul>
             {% for node in site.posts limit:5 %} 
 	            <li><a href="{{ node.url }}" title="{{ node.title }}">{{ node.title }}</a></li>
             {% endfor %}
+        </ul>
+    </div>
+    <div class="widget">
+        <h2>Other bits</h2>
+        <ul>
+            <li><a title="Post archive" href="/archive.html">Post archive</a></li>
         </ul>
     </div>
 </div>

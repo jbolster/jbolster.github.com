@@ -2,60 +2,68 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.author.name }}</title>
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
     {% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
     <meta name="author" content="{{ site.author.name }}">
-    <link href="/thirdparty/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/styles.css?ts={{ site.time | date:"%Y%m%d%H%M"}}" rel="stylesheet" type="text/css" media="all">
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/css/styles-mobile.css" />
+
+    <!-- Media queried styles - needed for IE Mobile --> 
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen and (min-device-width: 480px)" /> 
+    <!--[if !IEMobile]> 
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen"  /> 
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/css/pygments.css" />
     <link rel="alternate" type="application/rss+xml" title="{{ site.author.name }}'s RSS Feed" href="/atom.xml" />
   </head>
-  <script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-8527317-3']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
-
   <body>
-    <div class="navbar">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="brand" href="/">{{ site.title }}</a>
-          <div class="nav-collapse">
-            <ul class="nav">
-                <li class="{% if page.menu == nill %}active{% endif %}"><a href="/" title="{{ site.author.name }}'s blog">My Blog</a></li>
-                <li class="{% if page.menu == "about" %}active{% endif %}"><a href="/about.html" title="About {{ site.author.name }}">About me</a></li>
-            </ul>
-            <p class="navbar-text pull-right">Nothing to see here</p>
-          </div>
-        </div>
+    <header class="pagehead">
+      <nav>
+        <ul>
+          <li class="{% if page.menu == nill %}active{% endif %}">
+            <a href="/" title="{{ site.author.name }}'s blog">Blog</a>
+          </li>
+          <li class="{% if page.menu == "about" %}active{% endif %}">
+            <a href="/about.html" title="About {{ site.author.name }}">About me</a>
+          </li>
+        </ul>
+        <ul class="social">
+         <li><a href="http://twitter.com/{{ site.author.twitter }}/" id="twitter" title="{{ site.author.name }} on Twitter">Twitter</a></li>
+         <li><a href="http://facebook.com/{{ site.author.facebook }}/" id="facebook" title="{{ site.author.name }} on Facebook">Facebook</a></li>
+         <li><a href="http://github.com/{{ site.author.github }}/" id="github" title="{{ site.author.name }} on Github">Github</a></li>
+        </ul>
+      </nav>
+      <div class="info">
+        <h1>{{ site.title }}</h1>
+        <span>{{ site.tagline }}</span>
       </div>
-    </div>
-
-    <div class="container-fluid">
-      <div class="row-fluid">        
-          <div class="span9">
-            {{ content }}
-          </div>
-          <div class="span3">
-            {% include sidebar %} 
-          </div>  
-      </div>
+    </header>
+    <div class="wrapper">
+      <section class="left">
+         {{ content }}
+      </section>
+      <section class="right">
+        {% include sidebar %} 
+      </section>
     </div>
 
     <footer>
-        <p>&copy; {{ site.author.name }} {{ site.time | date:"%Y" }} <span class="lastbuild">Last build: {{ site.time | date:"%H:%M %Y.%m.%d" }}</span></p>
+        <p>This is my site. There are many like it but this one is mine.</span></p>
     </footer>
-    <link href="/thirdparty/google-code-prettify/prettify.css" type="text/css" rel="stylesheet" />
-    <script src="/thirdparty/google-code-prettify/prettify.js"></script>
+    
     <script src="/thirdparty/jquery-1.7.1.min.js"></script>
-    <script src="/js/global.js?ts={{ site.time | date:"%Y%m%d%H%M"}}"></script>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-8527317-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
   </body>
 </html>
