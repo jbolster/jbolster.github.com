@@ -1,0 +1,63 @@
+--- 
+layout: post
+title: Grabbing image data from an external source to stuff into a canvas element
+tags: 
+- security
+- canvas
+- javascript
+- Programming
+status: publish
+type: post
+published: true
+---
+
+I was playing with [Remy Sharp's][1] [collaborative drawing][2] example after he posted it on Twitter.
+
+Drew a couple of pictures and realised that I'm not as handy at drawing with the mouse as [I used to be][3] - so then I figured it would be better if I just put a random picture of a unicorn in. So I whacked open Developer Tools and tried to directly draw an image on the canvas element:
+
+```javascript
+    var img = document.createElement("img");
+    img.src = "http://somewhere-off-site.com/unicorn.jpg";
+    ctx.drawImage(img,0,0);
+```
+
+Can you see the problem? Pub-quiz points if you correctly guessed 'Cross Domain Security'. It was perfectly fine to chuck the picture into the canvas without a problem cropping up. The issue happens when the code tried to call 'getDataURL' for transmission. That's the no no.
+
+So what did I do? I cheated a little bit - browsing to the picture I wanted, getting the dataURL and copying it across to the original browser window.
+
+Voilá:
+
+```javascript
+    var canvas = document.createElement("canvas");
+    canvas.width = 50;
+    canvas.height= 50;
+
+    // Random image from Google Image search for unicorn - don't judge me!
+    var img = document.createElement("img");
+    img.src = "http://media.avclub.com/images/articles/article/62/62295/GLE_302-Sc9_2191_jpg_627x325_crop_upscale_q85.jpg";
+    
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img,-450,100);
+    
+    var dataStr = canvas.toDataURL("image/png");
+    window.location=dataStr;
+```
+
+The window URL changes to give me my data URL (which I've put as the src attribute for the image tag below:
+
+<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkKDA8MCgsOCwkJDRENDg8QEBEQCgwSExIQEw8QEBD/2wBDAQMDAwQDBAgEBAgQCwkLEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBD/wAARCAAyADIDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD4ZHhiaNwX1G4YdSN3Wo5fDNvLIZJ5ZpOc8sT/AFrpmjbJGeD7VXK7G5NeWqsmdKitkjoPgz4I0S/8ZWj3FiZ/sbC6YOPl+XJAI784719bWEMuqzRw3L5XPyKoAVffH0r4/wDDHi9/Bd6dT88pvGxyOcpmvq/w7NqureGoPEekD93LCJUkYZXGM15mYznBqfQ+iyVQlBrqj2jwtb/YIDCsYXBH3jnPFdDlZGK9yc9K+Z7H4xano2pJp+r61M7uQFWCJTn/AOtXsfhXx9Y+JLaOWC5EpwAwcbHU/SvOTaXM+p9HKSb3OzMcWf8AV/rRVTzpT0R/zoqtSeQ/Mhyx6Hmq5wxIb8TVqbngHBqu5XbkgA9+ete/az0Pzxs6n4bfDu7+IetNo62m+1C/v3I4VTxgH1NfoD4a8G6V4f8ABFj4XtYFW1tbcQc8/LjkGvmP9mrxb4a8OaIYb9wJ2kMkhGNzfn6V9IW/xI8J6tp0kemeII2mIJSJQTIGx029P1ry8XNylaWyPscpwvs8OprdnhviT9nlb/x/beIVaf7La3ImSOKXClRn5T7V61oPw30uyuUvLAz28jffiX/VjnPArM0T4h21/qT6bqETW17bnDK4xuX1FepWGs6e1uHR1yBjpXE6jmrN7HowwnK3NbsmTTdqKvnngAdKKhOqjPBorPnNfq77n5gPnOe471DuBy2cE1IzEnHrUL4CnABI96+mufnCV3qaegXckF5Gu0t5fzKA5Unj1FfVnwq1HxLY6ObpPBjXNiuWab7cjNgIWPUAngV8iWUrJdwPGOjqCM9eele++DvDX9qakqaho6vbycSD7RIiEEYJCg8cEiuDGqEbSnqfV8PTnWpyg5Wt37Hd/Fa5sBrFhI2l3+nawJlVyNsigFQSGKnA4Yde5rtfDV3qMcMfnylgcYJ9KmuPDNnNYTR21su528xjjO5sD/D9BUVpBLaRxxOuNi4FeRVkpP3T6KLcfdudeuo8DKdvWiuc/tPHG4ce9FZXL1PgiTqKhUDf0oor6tn5gx+nAHUbcEcecn/oQr7Z8GQw/ZUPlJnYP4R7UUV5uZbRPe4d3keiIALVcDHHauZ1xmEfDEc9jRRXlyPraWzOYLvk/OfzooorAD//2Q=="/>
+
+Last thing to do is set the encoded data as the src rather than the external image URL in the code above:
+
+```javascript
+    var img = document.createElement("img");
+    img.src = "data:image/jpeg;base64,/9j/4AAQSkZJR....";
+    ctx.drawImage(img,0,0);
+```
+
+No more security problems - but we did cheat! It's a far from perfect solution (and far from perfect coding) but it works for what I wanted to do. I wanted to manually put external image data on to a canvas element and do it manually.
+
+
+[1]: <http://twitter.com/rem> "Remy Sharp on Twitter"
+[2]: <http://rem.io/collab-drawing.html> "Collaborative Drawing workshop example"
+[3]: <http://doodlebug.desktopcreatures.com/members/jonathon/> "Jonathon's member page on doodle bug"

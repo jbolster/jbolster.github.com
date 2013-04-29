@@ -22,6 +22,7 @@ There is a handy little jQuery plugin called <a href="http://spritely.net/" titl
 
 So I open up a new <a href="http://jsfiddle.net/jonathon/5GSah/" title="jsFiddle">jsFiddle</a>, fill in my HTML and CSS with the containers and background images I want and then put in this little beauty:
 
+```javascript
     $('div').click(function() {
         var $this = $(this);
         $this.sprite({
@@ -32,6 +33,7 @@ So I open up a new <a href="http://jsfiddle.net/jonathon/5GSah/" title="jsFiddle
             }
         });
     });
+```
 
 Now, what I've done here is make it so that every div object will generate a sprite animation on click. This probably isn't the prettiest way to do it, but I have *only* just discovered Spritely so I'll look at the docs and improve. If you want to let me know in the comments, that'd be appreciated.
 

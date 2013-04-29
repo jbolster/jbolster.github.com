@@ -14,7 +14,7 @@ I recently answered [this question on StackOverflow][1] asking how to prevent so
 
 This is the solution I came up with:
 
-
+```javascript
     $("a").click(function(e) {
         e.preventDefault();
 
@@ -32,6 +32,7 @@ This is the solution I came up with:
             // Anything you want to say 'Bad user!'
         }
     });
+```
 
 You can use [jQuery's data storage][2] methods to assign arbitrary bits of data to specific DOM elements. In this case, when the user clicks a link I assign a property to the element as well as setting a timer to remove it 3 seconds later. This lets me know if the specific element has already been clicked by just calling the `data` method.
 
