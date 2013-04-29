@@ -16,13 +16,13 @@ I had a little bit of an issue at work when I had to create a query that returne
 This requires a conversion into XML. For anyone looking at the same problem, this is what I did
 
 ```sql
-    SELECT 
-        tbl.ColumnName
-        ref.value('FirstName[1]', 'nvarchar(100)') as [FirstName],
-        ref.value('LastName[1]', 'nvarchar(100)') as [LastName],
-    FROM myTable tbl 
-    CROSS APPLY (SELECT CONVERT(xml, tbl.MyNonXmlCol)) as T(X)
-    CROSS APPLY T.X.nodes('//AuthorDetails[1]') R(ref)
+SELECT 
+    tbl.ColumnName
+    ref.value('FirstName[1]', 'nvarchar(100)') as [FirstName],
+    ref.value('LastName[1]', 'nvarchar(100)') as [LastName],
+FROM myTable tbl 
+CROSS APPLY (SELECT CONVERT(xml, tbl.MyNonXmlCol)) as T(X)
+CROSS APPLY T.X.nodes('//AuthorDetails[1]') R(ref)
 ```
 
 [1]: <http://msdn.microsoft.com/en-us/library/ms178030.aspx> "xml data type value method at MSDN"

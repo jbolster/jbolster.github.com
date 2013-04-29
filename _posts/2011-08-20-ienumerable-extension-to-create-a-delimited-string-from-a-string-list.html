@@ -14,19 +14,19 @@ published: true
 With string lists, one thing that I find myself doing a lot is combining the list by some delimiter. In C#, this is a fairly easy thing to do but (today especially) I've seen a lot of places where people suggest using a string builder and appending a formatted string (then getting a substring to remove the last delimiter) or something similar. I'm not completely against this, I just think this method is neater:
 
  ```csharp
-    public static string ToString<T>(this IEnumerable<T> source, string delimiter)
-    {
-        return string.Join(delimiter, source);
-    }
+public static string ToString<T>(this IEnumerable<T> source, string delimiter)
+{
+    return string.Join(delimiter, source);
+}
 ```
 
 That will throw up an exception if 'source' is null. That's fine for me, since I don't want that extension from hiding something that might be wrong elsewhere (i.e. why am I trying to join a null list). If you want to make this work fine and dandy for a null source, you can just use the [null coalescing operator][1] and provide an empty source:
 
 ```csharp
-    public static string ToString<T>(this IEnumerable<T> source, string delimiter)
-    {
-        return string.Join(delimiter, source ?? Enumerable.Empty<T>());
-    }
+public static string ToString<T>(this IEnumerable<T> source, string delimiter)
+{
+    return string.Join(delimiter, source ?? Enumerable.Empty<T>());
+}
 ```
 
 Now why do I think this is a better solution that the string builder option? Well, if you whack open [Reflector][2], you'll notice that the [Join][3] method uses a StringBuilder object and builds up from there. So since it's already built straight into the framework, why reinvent the wheel? Of course, the Join method with an IEnumerable as an argument is only available on .NET 4.0. Anything prior to .NET 4.0 and you'll have to pass in a string array (at which point the string builder method would be useful).
