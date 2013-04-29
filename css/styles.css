@@ -4,11 +4,11 @@
     src: url('../webfonts/252FD4_0_0.eot?#iefix') format('embedded-opentype'),url('../webfonts/252FD4_0_0.woff') format('woff'),url('../webfonts/252FD4_0_0.ttf') format('truetype');
 } 
 
-body{
-    background: url(../images/bg.jpg);
-}
-
 @media (min-width: 540px) {
+    
+    body{
+        background: url(../images/bg.jpg);
+    }
 
     .pagehead li{
         margin-right:1em;
