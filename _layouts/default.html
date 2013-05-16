@@ -5,18 +5,12 @@
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
     {% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
     <meta name="author" content="{{ site.author.name }}">
-    <!--[if lte IE 8]>
-      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1" />
+    <!--[if lte IE 8]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     <link rel="stylesheet" type="text/css" href="/css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="/css/styles-mobile.css" />
-
-    <!-- Media queried styles - needed for IE Mobile --> 
-    <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen and (min-device-width: 480px)" /> 
-    <!--[if !IEMobile]> 
-    <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen"  /> 
-    <![endif]-->
-
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen and (min-device-width: 540px)" /> 
+    
     <link rel="stylesheet" type="text/css" href="/css/pygments.css" />
     <link rel="alternate" type="application/rss+xml" title="{{ site.author.name }}'s RSS Feed" href="/atom.xml" />
   </head>
@@ -52,7 +46,7 @@
     </div>
 
     <footer>
-        <p>This is my site. There are many like it but this one is mine.</span></p>
+        <p>This is my site. There are many like it but this one is mine.</p>
     </footer>
 
     <script type="text/javascript">
