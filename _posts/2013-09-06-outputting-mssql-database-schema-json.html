@@ -1,0 +1,62 @@
+--- 
+layout: post
+title: Outputting an MSSQL database as a JSON string
+tags:
+- sql
+- json
+- security
+- fun
+status: publish
+type: post
+published: true
+---
+
+Why would I want to do this at all? Surely this is madness, I hear you say!
+
+I wanted to be evil for a little bit (side note: don't be evil) and I was playing with [Troy Hunt's][1] [invitation to hack his site][2]. Well, not his personal site but one he set up for a course he's running.
+
+I noticed that there was a SQL injection attack on one of the pages and wanted to see just how much information about the database I could get from that.
+
+Then I created this (well, it was slightly modified to hack Troy's site):
+
+```sql
+select '{database_name:"' + db_name() +'", tables: [' +
+STUFF((
+	SELECT ',{'+ti.tableInfo +'}'
+	FROM
+	(
+		select 'table_name: "'+ t.name + '", columns: [' +
+		STUFF(
+							(
+								SELECT  ',{column_name: "' + CAST(c.column_name AS VARCHAR) 
+								+ '", type: "' + cast(c.data_type as varchar) 
+								+ '", char_max_length: "' + cast(c.CHARACTER_MAXIMUM_LENGTH as varchar)
+								+ '", char_octet_length: "' + cast(c.CHARACTER_OCTET_LENGTH as varchar) 
+								+'", nullable: '+ CASE c.is_nullable WHEN 'YES' THEN 'true' ELSE 'false' END + '}'
+								FROM information_schema.columns c
+								where c.table_name = t.name
+								FOR XML PATH('')
+							)
+						,   1
+						,   1
+						,   ''
+					) + ']' as [tableInfo]
+		FROM sys.Tables t
+	) as ti
+	FOR XML PATH('')
+), 1, 1 ,'') + ']}'
+```
+
+What the above piece of code does is create a JSON version of your database schema. It uses some hackery of using [STUFF][3] a couple of times to pull information about the columns and the tables (well, I say hackery because it looked hideous but works).
+
+A tiny bit of HTML, JS, and Knockout and I have a lovely little jsbin to describe the schema: [http://jsbin.com/uZibesO/1][5] 
+
+Of course, this was all a bit of learning for me and I don't actually intend to hack a website so just in case people didn't see the note above: DON'T BE EVIL.
+
+I also recommend [Troy's course on PluralSight][4] (which goes with his 'Hack yourself first' site).
+
+[1]: <https://twitter.com/troyhunt> "Troy Hunt on Twitter"
+[2]: <http://www.troyhunt.com/2013/09/you-are-cordially-invited-to-hack-me.html> "You are cordially invited to hack me first - Troy Hunt"
+[3]: <http://technet.microsoft.com/en-us/library/ms188043.aspx> "Transact-SQL STUFF function on MSDN"
+[4]: <http://pluralsight.com/training/Courses/TableOfContents/hack-yourself-first> "Hack Yourself First - a PluralSight course by Troy Hunt"
+[5]: <http://jsbin.com/uZibesO/1> "jsbin to display a database schema using JSON"
