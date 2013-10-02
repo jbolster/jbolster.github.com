@@ -1,0 +1,36 @@
+--- 
+layout: post
+title: Using MemberExpression to return a property name as a string
+tags:
+- C#
+- dotnet
+- expressions
+- Programming
+status: publish
+type: post
+published: true
+---
+
+This is a snippet of code I used because I absolutely hate using magic strings in code.
+
+We were using a third party tool (I'm looking at you, [NHibernate Events][1]) and it required the property name to be passed as a string. In comes this method!
+
+```csharp
+    public static string PropertyName<T>(Expression<Func<T, object>> expression)
+    {
+        var body = expression.Body as MemberExpression;
+
+        if (body == null)
+        {
+            body = ((UnaryExpression)expression.Body).Operand as MemberExpression;
+        }
+
+        return body.Member.Name;
+    }
+```
+
+If you run it like `PropertyName<MyType>(x=> x.MyPropertyName)` then you get back `MyPropertyName` as a string.
+
+Yes, I understand that this adds a little bit of complexity to what you're trying to do. However, we were running code that was constantly being changed and having the property name as a string in a random class had already caused some problems. This seemed like a better option.
+
+[1]: <http://nhforge.org/wikis/howtonh/creating-an-audit-log-using-nhibernate-events.aspx> "Creating an Audit Log using NHibernate Events"
