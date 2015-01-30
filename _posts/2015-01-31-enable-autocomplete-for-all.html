@@ -16,10 +16,10 @@ Usually, to pass security requirements we need to disable autocomplete on all th
 Here's a small feature to re-enable autocomplete on all forms and input fields:
 
 ```javascript
-javascript:[].forEach.call(document.querySelectorAll('form,input'), function(e){ e.removeAttribute('autocomplete')})
+[].forEach.call(document.querySelectorAll('form,input'), function(e){ e.removeAttribute('autocomplete')})
 ```
 
 And here's it in link form for clicking and dragging to the bookmarks toolbar:
-<a href="javascript:javascript:[].forEach.call(document.querySelectorAll('form,input'), function(e){ e.removeAttribute('autocomplete')})">Enable autocomplete</a>
+<a href="javascript:[].forEach.call(document.querySelectorAll('form,input'), function(e){ e.removeAttribute('autocomplete')})">Enable autocomplete</a>
 
 Elsewhere, I had something that would raise a warning about form fields not having autocomplete disabled (hint: it's more or less the same as above).
