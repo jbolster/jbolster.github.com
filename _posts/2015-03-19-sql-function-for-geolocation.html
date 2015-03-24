@@ -1,0 +1,41 @@
+--- 
+layout: post
+title: Converting locations from Degree Minutes Seconds to decimal value
+tags: 
+- sql
+- gist
+status: publish
+type: post
+published: true
+---
+
+I recently had to create a SQL function to convert latitudes and longitudes from one format to another. The source fields were varchar for each latitude and longitude value held in the format DD MM SS (degrees / minutes / seconds, separated by a space). This needed to be saved into a decimal format.
+
+For clarity's sake, there's a lot of DECLARE statements:
+
+```sql
+IF OBJECT_ID (N'dbo.fnConvertDMSToDecimal', N'FN') IS NOT NULL
+    DROP FUNCTION fnConvertDMSToDecimal;
+GO
+CREATE FUNCTION fnConvertDMSToDecimal(@dms varchar(max))
+RETURNS decimal(18,16)
+BEGIN
+	DECLARE @firstSpaceLocation int = CHARINDEX (' ' ,@dms ,1)
+	DECLARE @secondSpaceLocation int = CHARINDEX (' ' ,@dms ,@firstSpaceLocation+1)
+ 
+	DECLARE @degrees decimal(18,15) = CAST(SUBSTRING(@dms , 1, @firstSpaceLocation-1) as real)
+	DECLARE @minutes decimal(18,15) = CAST(SUBSTRING(@dms , @firstSpaceLocation+1, @secondSpaceLocation-@firstSpaceLocation) As real)
+	DECLARE @seconds decimal(18,15) = CAST(SUBSTRING(@dms , @secondSpaceLocation+1, LEN(@dms) - @secondSpaceLocation-1) as real)
+ 
+	DECLARE @bearing char = RIGHT(@dms, 1)
+	DECLARE @multiplier int = 1
+ 
+	IF @bearing = 'W' or @bearing = 'w' or @bearing = 'S' or @bearing = 's'
+		SET @multiplier = -1
+	
+	return (@degrees + (((@seconds/60)+ @minutes) / 60)) * @multiplier
+END
+GO
+ 
+print dbo.fnConvertDMSToDecimal('36 01 18S')
+```
